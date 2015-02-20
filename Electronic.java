@@ -8,7 +8,7 @@ public abstract class Electronic extends Thing {
 
 	public void toggleSwitch() {
 		state = state ? false : true;
-//		GUI.refreshGUI();
+		((MainFrame) GUI.frame).refreshGUI();
 	}
 	
 	public boolean getState() {

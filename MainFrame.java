@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 		detailsTextArea.setEditable(false);
 		detailsTextArea.setLineWrap(true);
 		
-		button = new JButton("Click me");
+		button = new JButton("Toggle");
 		
 		for(Thing thing : Simulator.getThings()) {
 			listSelectionModel.addElement(thing);
@@ -49,13 +49,12 @@ public class MainFrame extends JFrame {
 		ListenForList lForList = new ListenForList();
 		list.addListSelectionListener(lForList);
 			
-		button.setText("Click");
 		ListenForButton lForButton = new ListenForButton();
 		button.addActionListener(lForButton);
 		
-		button.setBorderPainted(false);
 		itemsPanel.add(list);
 		itemsPanel.add(scroller);
+		itemsPanel.add(button);
 		
 		detailsPanel.add(detailsTextArea, BorderLayout.CENTER);
 		
@@ -71,6 +70,10 @@ public class MainFrame extends JFrame {
 			detailsBuffer.append(s);
 		}
 		detailsTextArea.setText(detailsBuffer.toString());
+		if(thingBeingDisplayed instanceof Electronic) {
+			String btnDisplay = detailsInfo.get(2).toString().equals("ON") ? "Turn Off" : "Turn On";
+			button.setText(btnDisplay);
+		}
 	}	
 	
 	private class ListenForButton implements ActionListener {
@@ -78,7 +81,9 @@ public class MainFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == button) {
-				
+				if(thingBeingDisplayed instanceof Electronic) {
+					((Electronic)thingBeingDisplayed).toggleSwitch();
+				}
 			}
 		}
 	}
@@ -88,6 +93,11 @@ public class MainFrame extends JFrame {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			if(e.getSource() == list) {
+				if(!(thingBeingDisplayed instanceof Electronic)) {
+					button.setVisible(false);
+				} else {
+					button.setVisible(true);
+				}
 				thingBeingDisplayed = list.getSelectedValue();
 				refreshGUI();
 			}
