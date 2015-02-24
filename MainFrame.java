@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
 		
 		//Items list
 		list = new JList<Thing>(listSelectionModel);
-		list.setVisibleRowCount(10);
+		list.setVisibleRowCount(5);
 		scroller = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		list.setFixedCellHeight(30);
 		list.setFixedCellWidth(150);

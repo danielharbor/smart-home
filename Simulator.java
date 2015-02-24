@@ -11,12 +11,16 @@ public class Simulator {
 		Person john = new Person("John", "M", room2);
 		Microwave sonyMicrowave = new Microwave("Sony Microwave", room1, true);
 		Microwave samsungMicrowave = new Microwave("Samsung Microwave", room1, false);
+		SecuritySystem comcastSec = new SecuritySystem("Comcast Security System", room2, true);
+		AC panasonicAC = new AC("Panasonic AC", room2, true);
 		thingsInSimulation.add(jane);
 		thingsInSimulation.add(john);
 		thingsInSimulation.add(room1);
 		thingsInSimulation.add(room2);
 		thingsInSimulation.add(sonyMicrowave);
 		thingsInSimulation.add(samsungMicrowave);
+		thingsInSimulation.add(panasonicAC);
+		thingsInSimulation.add(comcastSec);
 	}
 	
 	public static Set<Thing> getThings() {
